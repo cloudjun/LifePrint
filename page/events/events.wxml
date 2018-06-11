@@ -1,0 +1,64 @@
+<import src="/dist/field/index.wxml" />
+<import src="/dist/steps/index.wxml" />
+
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <template is="zan-steps" data="{{ type: 'horizon', steps: step2 }}"></template>
+      </view>
+    </view>
+  </view>
+
+  <view class="zan-panel-title">添加事件</view>
+  <view class="zan-panel">
+    <view class="zan-cell zan-field">
+      <view class="zan-cell__hd zan-field__title">事件日期</view>
+      <picker
+        mode="date"
+        class="zan-field__input zan-cell__bd"
+        start="{{pickerStartDate}}"
+        end="{{pickerEndDate}}"
+        value="{{lifeEvent.eventDate}}"
+        bindchange="pickerDateChange"
+      >
+        {{lifeEvent.eventDate}}
+      </picker>
+    </view>
+    <template
+      is="zan-field"
+      data="{{...textAreaDescription}}"></template>
+    <view class="zan-cell zan-field">
+      <view class="zan-cell__hd zan-field__title">幸福指数</view>
+      <slider class="zan-field__input zan-cell__bd" value="0" bindchange="slider4change" min="-10" max="10" show-value value="{{lifeEvent.happiness}}"/>
+    </view>
+    <button class="zan-btn zan-btn--primary" bindtap="saveLifeEvent">保存</button>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-row">
+      <view class="zan-col zan-col-8 zan-col-offset-18">
+        <view class="zan-cell zan-cell--access">
+          <view class="zan-cell__ft">
+            <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="clickContinue">继续</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="zan-panel-title">已添加的事件:</view>
+  <view class="zan-panel">
+    <block wx:for-items="{{lifeEventNames}}" wx:key="{{lifeEventNames}}">
+      <view class="zan-cell zan-cell--access" bindtap="clickEvent" id="{{item}}">
+        <view class="zan-cell__bd">
+          <view class="zan-icon zan-icon-password-view"  style="color: #38f;">
+            {{item}}
+          </view>
+        </view>
+        <view class="zan-cell__ft"></view>
+      </view>
+    </block>
+  </view>
+
+</view>

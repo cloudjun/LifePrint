@@ -1,0 +1,17 @@
+<import src="/dist/steps/index.wxml" />
+
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <template is="zan-steps" data="{{ type: 'horizon', steps: step3 }}"></template>
+      </view>
+    </view>
+  </view>
+
+  <view class="chart-iframe">
+      <canvas disable-scroll="true" style="width:{{myCanvasStyle.width}}px; height: {{myCanvasStyle.height}}px;"  bindtouchstart="myCanvasTouchStart" bindtouchend="myCanvasTouchEnd" canvas-id="myCanvas"></canvas>
+  </view>
+  
+  <view class="zan-panel-title">如有问题欢迎来信至lifeprintchart@gmail.com</view>
+</view>

@@ -1,0 +1,76 @@
+<import src="/dist/field/index.wxml" />
+<import src="/dist/steps/index.wxml" />
+
+<view class="container">
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <template is="zan-steps" data="{{ type: 'horizon', steps: step1 }}"></template>
+      </view>
+    </view>
+  </view>
+
+  <view class="zan-cell zan-field">
+    <view class="zan-cell__hd zan-field__title">轨迹图名字</view>
+    <input
+      type="text"
+      placeholder="{{lifeChartName}}"
+      value="{{lifeChartName}}"
+      class="zan-field__input zan-cell__bd"
+      disabled="{{changeIsDisabled}}"
+      bindinput="bindKeyInput"/>
+  </view>
+
+  <view class="zan-panel-title">你想要记录一年还是一个月之内的事件？</view>
+  <view class="zan-panel">
+    <view class="zan-cell zan-field">
+      <view class="zan-cell__hd">
+    		<radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio">
+            <radio value="year" checked="{{monthYearType=='year'}}" disabled="{{changeIsDisabled}}"/>年
+            <radio value="month" checked="{{monthYearType=='month'}}" disabled="{{changeIsDisabled}}"/>月
+          </label>
+        </radio-group>
+	    </view>
+      <view class="zan-col zan-col-8 zan-col-offset-9">
+        <picker
+          mode="date"
+          class="zan-field__input zan-cell__bd"
+          value="{{pickerChosenValue}}"
+          bindchange="pickerChange"
+          fields = "{{monthYearType}}"
+          disabled = "{{changeIsDisabled}}"
+        >
+          {{pickerChosenValue}}
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-row">
+      <view class="zan-col zan-col-8 zan-col-offset-18">
+        <view class="zan-cell zan-cell--access">
+          <view class="zan-cell__ft">
+            <button class="zan-btn zan-btn--small zan-btn--primary" bindtap="clickContinue">继续</button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="zan-panel-title">已保存的轨迹图:</view>
+  <view class="zan-panel">
+    <block wx:for-items="{{lifeChartNames}}" wx:key="{{lifeChartNames}}">
+      <view class="zan-cell zan-cell--access" bindtap="clickEvent" id="{{item}}">
+        <view class="zan-cell__bd">
+          <view class="zan-icon zan-icon-password-view"  style="color: #38f;">
+            {{item}}
+          </view>
+        </view>
+        <view class="zan-cell__ft"></view>
+      </view>
+    </block>
+  </view>
+
+</view>
